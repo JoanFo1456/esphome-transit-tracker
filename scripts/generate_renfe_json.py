@@ -20,7 +20,8 @@ import requests
 import pandas as pd
 import pytz
 
-GTFS_URL = "https://ssl.renfe.com/gtransit/Fichero_AV_LD/google_transit.zip"
+GTFS_URL  = "https://ssl.renfe.com/gtransit/Fichero_AV_LD/google_transit.zip"
+RT_URL    = "https://gtfsrt.renfe.com/trip_updates_LD.json"
 
 STOP_ID = "22100"   # Ourense — run test.py with your city name to find yours
 HOURS_AHEAD = 24    # How many hours ahead to include
@@ -39,6 +40,32 @@ ROUTE_COLORS = {
     "REG.EXP.":  "666666",
     "TRENCELTA": "3366AA",
 }
+
+
+def fetch_realtime() -> tuple[dict, set]:
+    """Returns ({trip_id: delay_seconds}, {canceled_trip_ids})."""
+    try:
+        r = requests.get(RT_URL, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+    except Exception as exc:
+        print(f"Warning: real-time fetch failed ({exc}), using static schedule only")
+        return {}, set()
+
+    delays: dict = {}
+    canceled: set = set()
+
+    for entity in data.get("entity", []):
+        tu   = entity.get("tripUpdate", {})
+        trip = tu.get("trip", {})
+        tid  = trip.get("tripId", "")
+        if trip.get("scheduleRelationship") == "CANCELED":
+            canceled.add(tid)
+        elif "delay" in tu:
+            delays[tid] = int(tu["delay"])
+
+    print(f"Real-time: {len(delays)} delayed, {len(canceled)} canceled")
+    return delays, canceled
 
 
 def parse_gtfs_time(t: str) -> timedelta:
@@ -79,20 +106,31 @@ def departures_for_date(
     midnight: datetime,
     now_ts: float,
     horizon_ts: float,
+    rt_delays: dict,
+    rt_canceled: set,
 ) -> list:
     rows = st[st["service_id"].isin(services)]
     trips = []
     for _, row in rows.iterrows():
+        trip_id = str(row["trip_id"])
+
+        if trip_id in rt_canceled:
+            continue  # skip canceled trains
+
         dep_delta = parse_gtfs_time(str(row["departure_time"]))
-        dep_dt = midnight + dep_delta
-        dep_unix = int(dep_dt.timestamp())
+        dep_dt    = midnight + dep_delta
+        dep_unix  = int(dep_dt.timestamp())
+
+        delay      = rt_delays.get(trip_id, 0)
+        is_rt      = trip_id in rt_delays
+        dep_unix  += delay
 
         if dep_unix <= now_ts or dep_unix > horizon_ts:
             continue
 
         route_name = str(row.get("route_short_name", ""))
-        raw_dest = row.get("destination")
-        headsign = str(raw_dest) if pd.notna(raw_dest) else ""
+        raw_dest   = row.get("destination")
+        headsign   = str(raw_dest) if pd.notna(raw_dest) else ""
 
         trips.append({
             "routeId":       str(row["route_id"]),
@@ -101,7 +139,7 @@ def departures_for_date(
             "headsign":      headsign,
             "arrivalTime":   dep_unix,
             "departureTime": dep_unix,
-            "isRealtime":    False,
+            "isRealtime":    is_rt,
         })
     return trips
 
@@ -112,6 +150,8 @@ def main() -> None:
     tomorrow_str = (now_madrid + timedelta(days=1)).strftime("%Y%m%d")
     now_ts       = now_madrid.timestamp()
     horizon_ts   = now_ts + HOURS_AHEAD * 3600
+
+    rt_delays, rt_canceled = fetch_realtime()
 
     print("Downloading Renfe GTFS...")
     r = requests.get(GTFS_URL, timeout=60)
@@ -164,7 +204,7 @@ def main() -> None:
         left_on="last_stop_id", right_on="stop_id", how="left"
     )[["trip_id", "stop_name"]].rename(columns={"stop_name": "destination"})
 
-    # Build joined table for our stop
+    # Build joined table for our stop (keep trip_id for real-time matching)
     st = stop_times[stop_times["stop_id"] == STOP_ID].copy()
     st = st.merge(trips_df[["trip_id", "route_id", "service_id"]], on="trip_id", how="left")
     st = st.merge(routes_df[["route_id", "route_short_name"]],     on="route_id", how="left")
@@ -177,8 +217,8 @@ def main() -> None:
     midnight_tomorrow = midnight_today + timedelta(days=1)
 
     all_trips = (
-        departures_for_date(st, today_services,    midnight_today,    now_ts, horizon_ts) +
-        departures_for_date(st, tomorrow_services, midnight_tomorrow, now_ts, horizon_ts)
+        departures_for_date(st, today_services,    midnight_today,    now_ts, horizon_ts, rt_delays, rt_canceled) +
+        departures_for_date(st, tomorrow_services, midnight_tomorrow, now_ts, horizon_ts, rt_delays, rt_canceled)
     )
 
     all_trips.sort(key=lambda x: x["departureTime"])

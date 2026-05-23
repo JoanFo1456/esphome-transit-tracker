@@ -95,7 +95,7 @@ class TransitTracker : public Component {
     void parse_schedule_json_(const std::string &json);
     bool http_mode_ = false;
     unsigned long last_http_fetch_ = 0;
-    static constexpr uint32_t HTTP_POLL_INTERVAL_MS = 3600000;
+    static constexpr uint32_t HTTP_POLL_INTERVAL_MS = 900000;  // 15 minutes
 
     std::string base_url_;
     std::string http_url_;

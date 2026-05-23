@@ -2,9 +2,9 @@ name: Generate Renfe Departures
 
 on:
   schedule:
-    # Runs every 6 hours so the JSON is never more than 6 hours stale.
-    # The ESP32 re-fetches every hour, so it will always have fresh data.
-    - cron: '0 */6 * * *'
+    # Runs every 15 minutes. Renfe's real-time endpoint updates every 30s,
+    # so this gives near-live delay and cancellation data.
+    - cron: '*/15 * * * *'
   workflow_dispatch:   # allows manual trigger from the Actions tab
 
 permissions:
