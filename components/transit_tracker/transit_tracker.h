@@ -43,6 +43,7 @@ class TransitTracker : public Component {
 
     void set_base_url(const std::string &base_url) { base_url_ = base_url; }
     void set_http_url(const std::string &http_url) { http_url_ = http_url; }
+    void set_http_realtime_url(const std::string &url) { http_realtime_url_ = url; }
     void set_feed_code(const std::string &feed_code) { feed_code_ = feed_code; }
     void set_display_departure_times(bool display_departure_times) { display_departure_times_ = display_departure_times; }
     void set_schedule_string(const std::string &schedule_string) { schedule_string_ = schedule_string; }
@@ -92,13 +93,17 @@ class TransitTracker : public Component {
     bool fully_closed_ = false;
 
     void fetch_http_();
+    void fetch_realtime_();
     void parse_schedule_json_(const std::string &json);
     bool http_mode_ = false;
     unsigned long last_http_fetch_ = 0;
-    static constexpr uint32_t HTTP_POLL_INTERVAL_MS = 900000;  // 15 minutes
+    unsigned long last_rt_fetch_ = 0;
+    static constexpr uint32_t HTTP_POLL_INTERVAL_MS = 3600000;  // 1 hour — base schedule rarely changes
+    static constexpr uint32_t HTTP_RT_POLL_INTERVAL_MS = 600000; // 10 minutes — real-time delays
 
     std::string base_url_;
     std::string http_url_;
+    std::string http_realtime_url_;
     std::string feed_code_;
     std::string schedule_string_;
     std::string list_mode_;

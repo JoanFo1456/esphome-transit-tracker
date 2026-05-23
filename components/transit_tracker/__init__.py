@@ -27,6 +27,7 @@ CONF_ROUTES = "routes"
 CONF_STOPS = "stops"
 CONF_BASE_URL = "base_url"
 CONF_HTTP_URL = "http_url"
+CONF_HTTP_REALTIME_URL = "http_realtime_url"
 CONF_FONT_ID = "font_id"
 CONF_LIMIT = "limit"
 CONF_ABBREVIATIONS = "abbreviations"
@@ -80,6 +81,7 @@ CONFIG_SCHEMA = cv.All(
             cv.GenerateID(CONF_TIME_ID): cv.use_id(RealTimeClock),
             cv.Optional(CONF_BASE_URL): validate_ws_url,
             cv.Optional(CONF_HTTP_URL): cv.url,
+            cv.Optional(CONF_HTTP_REALTIME_URL): cv.url,
             cv.Optional(CONF_LIMIT, default=3): cv.positive_int,
             cv.Optional(CONF_FEED_CODE, default=""): cv.string,
             cv.Optional(CONF_TIME_DISPLAY, default="departure"): cv.one_of(
@@ -151,6 +153,9 @@ async def to_code(config):
 
     if CONF_HTTP_URL in config:
         cg.add(var.set_http_url(config[CONF_HTTP_URL]))
+
+    if CONF_HTTP_REALTIME_URL in config:
+        cg.add(var.set_http_realtime_url(config[CONF_HTTP_REALTIME_URL]))
 
     cg.add(var.set_feed_code(config[CONF_FEED_CODE]))
     cg.add(var.set_schedule_string(_generate_schedule_string(config[CONF_STOPS])))

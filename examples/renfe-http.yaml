@@ -90,9 +90,10 @@ time:
 
 transit_tracker:
   id: tracker
-  # Replace YOUR_GITHUB_USERNAME with your actual GitHub username.
-  # The repo name is "esphome-transit-tracker" unless you renamed it.
+  # Base schedule — regenerated daily by GitHub Actions.
   http_url: "https://raw.githubusercontent.com/JoanFo1456/esphome-transit-tracker/main/data/renfe-departures.json"
+  # Real-time delays/cancellations — fetched directly from Renfe every 10 min.
+  http_realtime_url: "https://gtfsrt.renfe.com/trip_updates_LD.json"
   limit: 4
   time_display: departure
   scroll_headsigns: true

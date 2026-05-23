@@ -10,6 +10,7 @@ namespace transit_tracker {
 
 class Trip {
   public:
+    std::string trip_id;
     std::string route_id;
     std::string route_name;
     Color route_color;

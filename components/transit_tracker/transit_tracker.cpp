@@ -16,6 +16,7 @@ void TransitTracker::setup() {
   if (!this->http_url_.empty()) {
     this->http_mode_ = true;
     this->fetch_http_();
+    this->fetch_realtime_();
 
     this->set_interval("check_stale_trips", 10000, [this]() {
       if (this->schedule_state_.trips.empty()) return;
@@ -77,6 +78,9 @@ void TransitTracker::loop() {
   if (this->http_mode_) {
     if (millis() - this->last_http_fetch_ > HTTP_POLL_INTERVAL_MS) {
       this->fetch_http_();
+    }
+    if (millis() - this->last_rt_fetch_ > HTTP_RT_POLL_INTERVAL_MS) {
+      this->fetch_realtime_();
     }
     return;
   }
@@ -161,6 +165,7 @@ void TransitTracker::parse_schedule_json_(const std::string &json) {
       }
 
       this->schedule_state_.trips.push_back({
+        .trip_id = trip["tripId"].as<std::string>(),
         .route_id = route_id,
         .route_name = route_name,
         .route_color = route_color,
@@ -210,6 +215,72 @@ void TransitTracker::fetch_http_() {
   this->has_ever_connected_ = true;
   this->last_http_fetch_ = millis();
   this->status_clear_error();
+}
+
+void TransitTracker::fetch_realtime_() {
+  if (this->http_realtime_url_.empty() || !esphome::network::is_connected()) return;
+
+  ESP_LOGD(TAG, "Fetching real-time updates from %s", this->http_realtime_url_.c_str());
+
+  NetworkClientSecure client;
+  client.setInsecure();
+  HTTPClient http;
+  http.begin(client, this->http_realtime_url_.c_str());
+  int code = http.GET();
+  if (code != HTTP_CODE_OK) {
+    ESP_LOGW(TAG, "RT fetch returned %d", code);
+    http.end();
+    return;
+  }
+
+  String body = http.getString();
+  http.end();
+
+  json::parse_json(body.c_str(), [this](JsonObject root) -> bool {
+    auto entities = root["entity"].as<JsonArray>();
+    if (entities.isNull()) return true;
+
+    this->schedule_state_.mutex.lock();
+
+    for (auto &t : this->schedule_state_.trips) {
+      t.is_realtime = false;  // reset before applying new RT data
+    }
+
+    for (auto entity : entities) {
+      auto tu   = entity["tripUpdate"].as<JsonObject>();
+      auto trip = tu["trip"].as<JsonObject>();
+      std::string tid = trip["tripId"].as<std::string>();
+      bool canceled   = (trip["scheduleRelationship"].as<std::string>() == "CANCELED");
+      int  delay      = tu["delay"] | 0;
+
+      for (auto &t : this->schedule_state_.trips) {
+        if (t.trip_id != tid) continue;
+        if (canceled) {
+          t.departure_time = 0;  // sentinel — filtered out in draw_schedule
+          t.arrival_time   = 0;
+        } else {
+          t.departure_time += delay;
+          t.arrival_time   += delay;
+          t.is_realtime = true;
+        }
+        break;
+      }
+    }
+
+    // Remove canceled trips (sentinel departure_time == 0)
+    this->schedule_state_.trips.erase(
+      std::remove_if(
+        this->schedule_state_.trips.begin(), this->schedule_state_.trips.end(),
+        [](const Trip &t) { return t.departure_time == 0; }
+      ),
+      this->schedule_state_.trips.end()
+    );
+
+    this->schedule_state_.mutex.unlock();
+    return true;
+  });
+
+  this->last_rt_fetch_ = millis();
 }
 
 void TransitTracker::on_ws_message_(websockets::WebsocketsMessage message) {

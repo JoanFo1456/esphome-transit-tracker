@@ -2,9 +2,9 @@ name: Generate Renfe Departures
 
 on:
   schedule:
-    # Runs every 15 minutes. Renfe's real-time endpoint updates every 30s,
-    # so this gives near-live delay and cancellation data.
-    - cron: '*/15 * * * *'
+    # Runs once daily at 03:00 UTC (05:00 Madrid summer time).
+    # Real-time delays are applied by the ESP32 directly from gtfsrt.renfe.com.
+    - cron: '0 3 * * *'
   workflow_dispatch:   # allows manual trigger from the Actions tab
 
 permissions:
