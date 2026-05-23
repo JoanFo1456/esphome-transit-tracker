@@ -1,0 +1,38 @@
+name: Generate Renfe Departures
+
+on:
+  schedule:
+    # Runs every 6 hours so the JSON is never more than 6 hours stale.
+    # The ESP32 re-fetches every hour, so it will always have fresh data.
+    - cron: '0 */6 * * *'
+  workflow_dispatch:   # allows manual trigger from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests pandas pytz
+
+      - name: Generate departure JSON
+        run: python scripts/generate_renfe_json.py
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name  "github-actions[bot]"
+          git add data/renfe-departures.json
+          git diff --staged --quiet || git commit -m "chore: update Renfe departures [skip ci]"
+          git push

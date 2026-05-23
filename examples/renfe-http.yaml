@@ -1,0 +1,98 @@
+# Renfe Transit Tracker — no-server HTTP mode
+#
+# How it works:
+#   A GitHub Actions workflow (renfe-departures.yml) runs every 6 hours,
+#   downloads Renfe's GTFS, extracts Ourense departures, and commits
+#   data/renfe-departures.json to this repo.
+#   The ESP32 fetches that JSON file directly from GitHub every hour.
+#   No separate API server is required.
+#
+# First-time setup:
+#   1. Push this repo to GitHub (if you haven't already).
+#   2. Go to Actions → "Generate Renfe Departures" → Run workflow.
+#      This generates data/renfe-departures.json on the main branch.
+#   3. Flash the ESP32 once via USB: esphome run examples/renfe-http.yaml
+#   4. After that, OTA updates work over WiFi.
+#
+# To track a different station, edit STOP_ID in scripts/generate_renfe_json.py
+# (run test.py with your city name to find the right stop_id).
+
+esphome:
+  name: renfe-tracker
+  friendly_name: Renfe Tracker
+
+esp32:
+  variant: esp32s3
+  flash_size: 8MB
+  cpu_frequency: 240MHz
+  framework:
+    type: arduino
+
+psram:
+  mode: quad
+  speed: 80MHz
+
+external_components:
+  - source:
+      type: local
+      path: ../components
+
+logger:
+  level: DEBUG
+  logs:
+    sensor: ERROR
+    text_sensor: ERROR
+
+ota:
+  - platform: esphome
+    password: ""
+
+wifi:
+  ssid: "YOUR_WIFI_SSID"
+  password: "YOUR_WIFI_PASSWORD"
+  power_save_mode: "NONE"
+
+  ap:
+    ssid: "RenfeTracker Fallback"
+    password: "renfetracker"
+
+display:
+  - platform: hub75
+    id: matrix
+    board: adafruit-matrix-portal-s3
+    double_buffer: true
+    update_interval: 32ms
+    panel_width: 64
+    panel_height: 32
+    layout_cols: 2
+    # Matrix Portal S3 — G and B channels are swapped in hardware
+    g1_pin: 40
+    b1_pin: 41
+    g2_pin: 37
+    b2_pin: 39
+    e_pin: 21
+    brightness: 200
+    lambda: |-
+      id(tracker).draw_schedule();
+
+font:
+  - file: "fonts/Pixolletta8px.ttf"
+    id: pixolletta
+    size: 10
+    glyphs:
+      - abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;!?()"'-+/*=%@#[]{}<>|&^~
+      - " "
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Madrid
+
+transit_tracker:
+  id: tracker
+  # Replace YOUR_GITHUB_USERNAME with your actual GitHub username.
+  # The repo name is "esphome-transit-tracker" unless you renamed it.
+  http_url: "https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/esphome-transit-tracker/main/data/renfe-departures.json"
+  limit: 4
+  time_display: departure
+  scroll_headsigns: true

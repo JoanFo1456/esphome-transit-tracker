@@ -1,0 +1,235 @@
+# Renfe Transit Tracker - Ourense Station
+#
+# Prerequisites:
+#   Self-host the Transit Tracker API with renfe-feeds.yaml (see README below).
+#   Run the Transit Tracker API on your local network, e.g. with Docker:
+#
+#     docker run -p 8080:8080 \
+#       -v /path/to/renfe-feeds.yaml:/app/feeds.yaml \
+#       ghcr.io/tjhorner/transit-tracker-api:latest
+#
+#   Then set base_url below to ws://<your-server-ip>:8080/
+#
+# To find stop_id and route IDs for a different station, run test.py
+# changing station_name to your city (e.g. "MADRID", "BARCELONA", "VIGO").
+#
+# NOTE: Renfe's GTFS does not include trip headsigns or a real-time feed.
+# The display will show the service type (AVE, ALVIA, AVLO…) and departure time.
+
+esphome:
+  name: renfe-tracker
+  friendly_name: Renfe Tracker
+
+esp32:
+  variant: esp32s3
+  flash_size: 8MB
+  cpu_frequency: 240MHz
+  framework:
+    type: arduino
+
+psram:
+  mode: quad
+  speed: 80MHz
+
+external_components:
+  - source:
+      type: local
+      path: ../components
+
+logger:
+  level: DEBUG
+  logs:
+    sensor: ERROR
+    text_sensor: ERROR
+
+ota:
+  - platform: esphome
+    password: ""
+
+wifi:
+  ssid: "YOUR_WIFI_SSID"
+  password: "YOUR_WIFI_PASSWORD"
+  power_save_mode: "NONE"
+
+  ap:
+    ssid: "RenfeTracker Fallback"
+    password: "renfetracker"
+
+display:
+  - platform: hub75
+    id: matrix
+    board: adafruit-matrix-portal-s3
+    double_buffer: true
+    update_interval: 32ms
+    panel_width: 64
+    panel_height: 32
+    layout_cols: 2
+    g1_pin: 40
+    b1_pin: 41
+    g2_pin: 37
+    b2_pin: 39
+    e_pin: 21
+    brightness: 200
+    lambda: |-
+      id(tracker).draw_schedule();
+
+font:
+  - file: "fonts/Pixolletta8px.ttf"
+    id: pixolletta
+    size: 10
+    glyphs:
+      - abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,:;!?()"'-+/*=%@#[]{}<>|&^~
+      - " "
+
+time:
+  - platform: sntp
+    id: sntp_time
+    timezone: Europe/Madrid
+
+color:
+  - id: ave_red
+    hex: "E3000F"
+  - id: alvia_blue
+    hex: "0064A8"
+  - id: avlo_purple
+    hex: "6B2D8B"
+  - id: avant_orange
+    hex: "FF6B00"
+  - id: intercity_gray
+    hex: "888888"
+
+transit_tracker:
+  id: tracker
+  # Point this at your self-hosted Transit Tracker API instance.
+  # Use ws:// for plain HTTP, wss:// if you set up TLS.
+  base_url: "ws://192.168.1.100:8080/"
+  feed_code: "renfe"
+  limit: 4
+  time_display: departure
+  list_mode: sequential
+
+  stops:
+    - stop_id: "22100"   # Ourense
+      routes:
+        # AVE
+        - "0822317000AV006"
+        - "3141217000AV006"
+        - "1700031412AV006"
+        - "1700022100AV006"
+        - "2210017000AV006"
+        - "1700008223AV006"
+        - "6091122100AV006"
+        - "2210060911AV006"
+        # ALVIA
+        - "0822371801GL023"
+        - "2210071801GL023"
+        - "0822311208GL023"
+        - "7180108223GL023"
+        - "7180122100GL023"
+        - "2030917000GL023"
+        - "2210017000GL023"
+        - "1700020309GL023"
+        - "1700022100GL023"
+        - "7840008223GL023"
+        # AVLO
+        - "3141217000LC112"
+        - "2210017000LC112"
+        - "1700031412LC112"
+        - "1700022100LC112"
+        - "0822317000LC112"
+        - "1700008223LC112"
+        # AVANT
+        - "3141222100AV008"
+        - "2210031412AV008"
+        # Intercity
+        - "2030922100GL026"
+        - "2210020309GL026"
+
+  styles:
+    # Each Renfe route_id encodes a specific origin-destination pair,
+    # so colors are set per route_id. Routes of the same service type
+    # share a color. Add or remove entries to match the routes above.
+    - route_id: "0822317000AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "3141217000AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "1700031412AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "1700022100AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "2210017000AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "1700008223AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "6091122100AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "2210060911AV006"
+      name: "AVE"
+      color: ave_red
+    - route_id: "0822371801GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "2210071801GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "0822311208GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "7180108223GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "7180122100GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "2030917000GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "2210017000GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "1700020309GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "1700022100GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "7840008223GL023"
+      name: "ALVIA"
+      color: alvia_blue
+    - route_id: "3141217000LC112"
+      name: "AVLO"
+      color: avlo_purple
+    - route_id: "2210017000LC112"
+      name: "AVLO"
+      color: avlo_purple
+    - route_id: "1700031412LC112"
+      name: "AVLO"
+      color: avlo_purple
+    - route_id: "1700022100LC112"
+      name: "AVLO"
+      color: avlo_purple
+    - route_id: "0822317000LC112"
+      name: "AVLO"
+      color: avlo_purple
+    - route_id: "1700008223LC112"
+      name: "AVLO"
+      color: avlo_purple
+    - route_id: "3141222100AV008"
+      name: "AVANT"
+      color: avant_orange
+    - route_id: "2210031412AV008"
+      name: "AVANT"
+      color: avant_orange
+    - route_id: "2030922100GL026"
+      name: "IC"
+      color: intercity_gray
+    - route_id: "2210020309GL026"
+      name: "IC"
+      color: intercity_gray

@@ -1,0 +1,7 @@
+feeds:
+  renfe:
+    name: Renfe (Alta Velocidad y Larga Distancia)
+    gtfs:
+      static: https://ssl.renfe.com/gtransit/Fichero_AV_LD/google_transit.zip
+      # Renfe does not publish a public GTFS-RT feed, so real-time indicators
+      # will not appear on the display. Remove this comment if you find one.

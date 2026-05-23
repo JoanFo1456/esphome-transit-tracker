@@ -13,6 +13,28 @@ namespace transit_tracker {
 static const char *TAG = "transit_tracker.component";
 
 void TransitTracker::setup() {
+  if (!this->http_url_.empty()) {
+    this->http_mode_ = true;
+    this->fetch_http_();
+
+    this->set_interval("check_stale_trips", 10000, [this]() {
+      if (this->schedule_state_.trips.empty()) return;
+      this->schedule_state_.mutex.lock();
+      auto now = this->rtc_->now();
+      if (now.is_valid()) {
+        this->schedule_state_.trips.erase(
+          std::remove_if(
+            this->schedule_state_.trips.begin(), this->schedule_state_.trips.end(),
+            [&now](const Trip &t) { return now.timestamp - t.departure_time > 60; }
+          ),
+          this->schedule_state_.trips.end()
+        );
+      }
+      this->schedule_state_.mutex.unlock();
+    });
+    return;
+  }
+
   this->ws_client_.onMessage([this](websockets::WebsocketsMessage message) {
     this->on_ws_message_(message);
   });
@@ -52,6 +74,13 @@ void TransitTracker::setup() {
 }
 
 void TransitTracker::loop() {
+  if (this->http_mode_) {
+    if (millis() - this->last_http_fetch_ > HTTP_POLL_INTERVAL_MS) {
+      this->fetch_http_();
+    }
+    return;
+  }
+
   this->ws_client_.poll();
 
   if (this->last_heartbeat_ != 0 && millis() - this->last_heartbeat_ > 60000) {
@@ -63,10 +92,15 @@ void TransitTracker::loop() {
 
 void TransitTracker::dump_config() {
   ESP_LOGCONFIG(TAG, "Transit Tracker:");
-  ESP_LOGCONFIG(TAG, "  Base URL: %s", this->base_url_.c_str());
-  ESP_LOGCONFIG(TAG, "  Schedule: %s", this->schedule_string_.c_str());
+  if (this->http_mode_) {
+    ESP_LOGCONFIG(TAG, "  Mode: HTTP");
+    ESP_LOGCONFIG(TAG, "  HTTP URL: %s", this->http_url_.c_str());
+  } else {
+    ESP_LOGCONFIG(TAG, "  Mode: WebSocket");
+    ESP_LOGCONFIG(TAG, "  Base URL: %s", this->base_url_.c_str());
+    ESP_LOGCONFIG(TAG, "  Schedule: %s", this->schedule_string_.c_str());
+  }
   ESP_LOGCONFIG(TAG, "  Limit: %d", this->limit_);
-  ESP_LOGCONFIG(TAG, "  List mode: %s", this->list_mode_.c_str());
   ESP_LOGCONFIG(TAG, "  Display departure times: %s", this->display_departure_times_ ? "true" : "false");
   ESP_LOGCONFIG(TAG, "  Scroll Headsigns: %s", this->scroll_headsigns_ ? "true" : "false");
 }
@@ -89,16 +123,8 @@ void TransitTracker::on_shutdown() {
   this->close(true);
 }
 
-void TransitTracker::on_ws_message_(websockets::WebsocketsMessage message) {
-  ESP_LOGV(TAG, "Received message: %s", message.rawData().c_str());
-
-  bool valid = json::parse_json(message.rawData(), [this](JsonObject root) -> bool {
-    if (root["event"].as<std::string>() == "heartbeat") {
-      ESP_LOGD(TAG, "Received heartbeat");
-      this->last_heartbeat_ = millis();
-      return true;
-    }
-
+void TransitTracker::parse_schedule_json_(const std::string &json) {
+  bool valid = json::parse_json(json, [this](JsonObject root) -> bool {
     if (root["event"].as<std::string>() != "schedule") {
       return true;
     }
@@ -152,8 +178,53 @@ void TransitTracker::on_ws_message_(websockets::WebsocketsMessage message) {
 
   if (!valid) {
     this->status_set_error(LOG_STR("Failed to parse schedule data"));
+  }
+}
+
+void TransitTracker::fetch_http_() {
+  if (!esphome::network::is_connected()) {
+    ESP_LOGW(TAG, "Not connected to network; skipping HTTP fetch");
     return;
   }
+
+  ESP_LOGD(TAG, "Fetching schedule from %s", this->http_url_.c_str());
+
+  NetworkClientSecure client;
+  client.setInsecure();
+
+  HTTPClient http;
+  http.begin(client, this->http_url_.c_str());
+  int code = http.GET();
+
+  if (code != HTTP_CODE_OK) {
+    ESP_LOGW(TAG, "HTTP GET returned %d", code);
+    http.end();
+    this->status_set_error(LOG_STR("Failed to fetch schedule"));
+    return;
+  }
+
+  String body = http.getString();
+  http.end();
+
+  this->parse_schedule_json_(body.c_str());
+  this->has_ever_connected_ = true;
+  this->last_http_fetch_ = millis();
+  this->status_clear_error();
+}
+
+void TransitTracker::on_ws_message_(websockets::WebsocketsMessage message) {
+  ESP_LOGV(TAG, "Received message: %s", message.rawData().c_str());
+
+  bool valid = json::parse_json(message.rawData(), [this](JsonObject root) -> bool {
+    if (root["event"].as<std::string>() == "heartbeat") {
+      ESP_LOGD(TAG, "Received heartbeat");
+      this->last_heartbeat_ = millis();
+      return true;
+    }
+    return true;
+  });
+
+  this->parse_schedule_json_(message.rawData().c_str());
 }
 
 void TransitTracker::on_ws_event_(websockets::WebsocketsEvent event, String data) {
@@ -442,8 +513,8 @@ void HOT TransitTracker::draw_schedule() {
     return;
   }
 
-  if (this->base_url_.empty()) {
-    this->draw_text_centered_("No base URL set", Color(0x252627));
+  if (this->base_url_.empty() && this->http_url_.empty()) {
+    this->draw_text_centered_("No URL configured", Color(0x252627));
     return;
   }
 
