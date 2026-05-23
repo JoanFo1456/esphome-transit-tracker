@@ -143,8 +143,13 @@ def main() -> None:
 
         with z.open("calendar_dates.txt") as f:
             cal_dates = pd.read_csv(f, dtype=str_dtype)
-        cal_dates["date"]           = cal_dates["date"].astype(int)
-        cal_dates["exception_type"] = cal_dates["exception_type"].astype(int)
+        if "date" in cal_dates.columns:
+            cal_dates["date"] = cal_dates["date"].astype(int)
+        if "exception_type" in cal_dates.columns:
+            cal_dates["exception_type"] = cal_dates["exception_type"].astype(int)
+        else:
+            # Renfe's calendar_dates.txt omits exception_type; treat all entries as additions (type 1)
+            cal_dates["exception_type"] = 1
 
     # Compute destination name per trip (last stop in sequence)
     last_stop = (

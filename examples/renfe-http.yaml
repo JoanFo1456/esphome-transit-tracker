@@ -48,8 +48,8 @@ ota:
     password: ""
 
 wifi:
-  ssid: "YOUR_WIFI_SSID"
-  password: "YOUR_WIFI_PASSWORD"
+  ssid: "CasaNostra"
+  password: "Jupiter#73"
   power_save_mode: "NONE"
 
   ap:
@@ -92,7 +92,7 @@ transit_tracker:
   id: tracker
   # Replace YOUR_GITHUB_USERNAME with your actual GitHub username.
   # The repo name is "esphome-transit-tracker" unless you renamed it.
-  http_url: "https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/esphome-transit-tracker/main/data/renfe-departures.json"
+  http_url: "https://raw.githubusercontent.com/JoanFo1456/esphome-transit-tracker/main/data/renfe-departures.json"
   limit: 4
   time_display: departure
   scroll_headsigns: true
