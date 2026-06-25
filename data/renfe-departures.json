@@ -3,73 +3,13 @@
   "data": {
     "trips": [
       {
-        "tripId": "0947012026-06-23",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1782284100,
-        "departureTime": 1782284100,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0906112026-06-23",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1782285480,
-        "departureTime": 1782285480,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0907112026-06-23",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1782292260,
-        "departureTime": 1782292260,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0909012026-06-23",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1782295800,
-        "departureTime": 1782295800,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0450512026-06-23",
+        "tripId": "0450512026-06-24",
         "routeId": "1700008223AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1782304920,
-        "departureTime": 1782304920,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0913112026-06-23",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1782313380,
-        "departureTime": 1782313380,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0955012026-06-23",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1782315900,
-        "departureTime": 1782315900,
+        "arrivalTime": 1782391320,
+        "departureTime": 1782391320,
         "isRealtime": false
       }
     ]
