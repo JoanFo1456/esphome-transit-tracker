@@ -3,13 +3,13 @@
   "data": {
     "trips": [
       {
-        "tripId": "0940012026-08-03",
+        "tripId": "0940012026-08-04",
         "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1785875400,
-        "departureTime": 1785875400,
+        "arrivalTime": 1785961800,
+        "departureTime": 1785961800,
         "isRealtime": false
       }
     ]
