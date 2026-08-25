@@ -3,23 +3,23 @@
   "data": {
     "trips": [
       {
-        "tripId": "0450512026-08-23",
+        "tripId": "0450512026-08-24",
         "routeId": "1700008223AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1787575320,
-        "departureTime": 1787575320,
+        "arrivalTime": 1787661720,
+        "departureTime": 1787661720,
         "isRealtime": false
       },
       {
-        "tripId": "0940012026-08-23",
+        "tripId": "0940012026-08-24",
         "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1787603400,
-        "departureTime": 1787603400,
+        "arrivalTime": 1787689800,
+        "departureTime": 1787689800,
         "isRealtime": false
       }
     ]
