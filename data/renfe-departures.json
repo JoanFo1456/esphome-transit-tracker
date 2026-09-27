@@ -3,33 +3,43 @@
   "data": {
     "trips": [
       {
-        "tripId": "3436412026-09-23",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1790411520,
-        "departureTime": 1790411520,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0436422026-09-23",
-        "routeId": "2210017000AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1790411700,
-        "departureTime": 1790411700,
-        "isRealtime": false
-      },
-      {
         "tripId": "0907112026-09-23",
         "routeId": "3141222100AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "Ourense",
-        "arrivalTime": 1790413860,
-        "departureTime": 1790413860,
+        "arrivalTime": 1790500260,
+        "departureTime": 1790500260,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0429522026-09-23",
+        "routeId": "1700022100LC112",
+        "routeName": "AVLO",
+        "routeColor": "6B2D8B",
+        "headsign": "Ourense",
+        "arrivalTime": 1790501340,
+        "departureTime": 1790501340,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0429512026-09-23",
+        "routeId": "1700031412LC112",
+        "routeName": "AVLO",
+        "routeColor": "6B2D8B",
+        "headsign": "A Coruña",
+        "arrivalTime": 1790501520,
+        "departureTime": 1790501520,
+        "isRealtime": false
+      },
+      {
+        "tripId": "3429512026-09-23",
+        "routeId": "2210031412AV008",
+        "routeName": "AVANT",
+        "routeColor": "FF6B00",
+        "headsign": "A Coruña",
+        "arrivalTime": 1790501520,
+        "departureTime": 1790501520,
         "isRealtime": false
       },
       {
@@ -38,28 +48,28 @@
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1790417400,
-        "departureTime": 1790417400,
+        "arrivalTime": 1790503800,
+        "departureTime": 1790503800,
         "isRealtime": false
       },
       {
-        "tripId": "0431412026-09-23",
-        "routeId": "3141217000AV006",
+        "tripId": "0527312026-09-23",
+        "routeId": "6091122100AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1790426400,
-        "departureTime": 1790426400,
+        "headsign": "Ourense",
+        "arrivalTime": 1790512380,
+        "departureTime": 1790512380,
         "isRealtime": false
       },
       {
-        "tripId": "0450512026-09-23",
+        "tripId": "0451512026-09-23",
         "routeId": "1700008223AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1790426520,
-        "departureTime": 1790426520,
+        "arrivalTime": 1790517420,
+        "departureTime": 1790517420,
         "isRealtime": false
       },
       {
@@ -68,8 +78,8 @@
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "Ourense",
-        "arrivalTime": 1790434980,
-        "departureTime": 1790434980,
+        "arrivalTime": 1790521380,
+        "departureTime": 1790521380,
         "isRealtime": false
       },
       {
@@ -78,18 +88,8 @@
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1790437500,
-        "departureTime": 1790437500,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0538212026-09-23",
-        "routeId": "2210060911AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Alicante/Alacant-Terminal",
-        "arrivalTime": 1790440800,
-        "departureTime": 1790440800,
+        "arrivalTime": 1790523900,
+        "departureTime": 1790523900,
         "isRealtime": false
       },
       {
@@ -98,8 +98,8 @@
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Ourense",
-        "arrivalTime": 1790442900,
-        "departureTime": 1790442900,
+        "arrivalTime": 1790529300,
+        "departureTime": 1790529300,
         "isRealtime": false
       },
       {
@@ -108,8 +108,8 @@
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "Ourense",
-        "arrivalTime": 1790442960,
-        "departureTime": 1790442960,
+        "arrivalTime": 1790529360,
+        "departureTime": 1790529360,
         "isRealtime": false
       },
       {
@@ -118,8 +118,8 @@
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1790443080,
-        "departureTime": 1790443080,
+        "arrivalTime": 1790529480,
+        "departureTime": 1790529480,
         "isRealtime": false
       }
     ]
