@@ -3,123 +3,23 @@
   "data": {
     "trips": [
       {
-        "tripId": "0907112026-09-23",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1790500260,
-        "departureTime": 1790500260,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0429522026-09-23",
-        "routeId": "1700022100LC112",
-        "routeName": "AVLO",
-        "routeColor": "6B2D8B",
-        "headsign": "Ourense",
-        "arrivalTime": 1790501340,
-        "departureTime": 1790501340,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0429512026-09-23",
-        "routeId": "1700031412LC112",
-        "routeName": "AVLO",
-        "routeColor": "6B2D8B",
-        "headsign": "A Coruña",
-        "arrivalTime": 1790501520,
-        "departureTime": 1790501520,
-        "isRealtime": false
-      },
-      {
-        "tripId": "3429512026-09-23",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1790501520,
-        "departureTime": 1790501520,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0909012026-09-23",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1790503800,
-        "departureTime": 1790503800,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0527312026-09-23",
-        "routeId": "6091122100AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Ourense",
-        "arrivalTime": 1790512380,
-        "departureTime": 1790512380,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0451512026-09-23",
+        "tripId": "0450512026-09-23",
         "routeId": "1700008223AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1790517420,
-        "departureTime": 1790517420,
+        "arrivalTime": 1790599320,
+        "departureTime": 1790599320,
         "isRealtime": false
       },
       {
-        "tripId": "0913112026-09-23",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1790521380,
-        "departureTime": 1790521380,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0955012026-09-23",
+        "tripId": "0940012026-09-23",
         "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1790523900,
-        "departureTime": 1790523900,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0434522026-09-23",
-        "routeId": "1700022100AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Ourense",
-        "arrivalTime": 1790529300,
-        "departureTime": 1790529300,
-        "isRealtime": false
-      },
-      {
-        "tripId": "3433412026-09-23",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1790529360,
-        "departureTime": 1790529360,
-        "isRealtime": false
-      },
-      {
-        "tripId": "3434512026-09-23",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1790529480,
-        "departureTime": 1790529480,
+        "arrivalTime": 1790627400,
+        "departureTime": 1790627400,
         "isRealtime": false
       }
     ]
