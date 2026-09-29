@@ -8,8 +8,8 @@
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1790599320,
-        "departureTime": 1790599320,
+        "arrivalTime": 1790685720,
+        "departureTime": 1790685720,
         "isRealtime": false
       },
       {
@@ -18,8 +18,8 @@
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1790627400,
-        "departureTime": 1790627400,
+        "arrivalTime": 1790713800,
+        "departureTime": 1790713800,
         "isRealtime": false
       }
     ]
