@@ -3,123 +3,43 @@
   "data": {
     "trips": [
       {
-        "tripId": "0429512026-10-10",
-        "routeId": "1700031412LC112",
-        "routeName": "AVLO",
-        "routeColor": "6B2D8B",
-        "headsign": "A Coruña",
-        "arrivalTime": 1791711120,
-        "departureTime": 1791711120,
-        "isRealtime": false
-      },
-      {
-        "tripId": "3429512026-10-10",
+        "tripId": "0909012026-10-12",
         "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1791711120,
-        "departureTime": 1791711120,
+        "arrivalTime": 1791799800,
+        "departureTime": 1791799800,
         "isRealtime": false
       },
       {
-        "tripId": "0527312026-10-10",
-        "routeId": "6091122100AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Ourense",
-        "arrivalTime": 1791721980,
-        "departureTime": 1791721980,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0451512026-10-10",
+        "tripId": "0450512026-10-11",
         "routeId": "1700008223AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1791727020,
-        "departureTime": 1791727020,
+        "arrivalTime": 1791808920,
+        "departureTime": 1791808920,
         "isRealtime": false
       },
       {
-        "tripId": "0434522026-10-10",
-        "routeId": "1700022100AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Ourense",
-        "arrivalTime": 1791738900,
-        "departureTime": 1791738900,
-        "isRealtime": false
-      },
-      {
-        "tripId": "3433412026-10-10",
+        "tripId": "0913112026-10-12",
         "routeId": "3141222100AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "Ourense",
-        "arrivalTime": 1791738960,
-        "departureTime": 1791738960,
+        "arrivalTime": 1791817380,
+        "departureTime": 1791817380,
         "isRealtime": false
       },
       {
-        "tripId": "3434512026-10-10",
+        "tripId": "0955012026-10-12",
         "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1791739080,
-        "departureTime": 1791739080,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0433422026-10-10",
-        "routeId": "2210017000LC112",
-        "routeName": "AVLO",
-        "routeColor": "6B2D8B",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1791739140,
-        "departureTime": 1791739140,
-        "isRealtime": false
-      },
-      {
-        "tripId": "3440412026-10-10",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1791752100,
-        "departureTime": 1791752100,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0440422026-10-10",
-        "routeId": "2210017000AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1791752280,
-        "departureTime": 1791752280,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0947012026-10-12",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1791787500,
-        "departureTime": 1791787500,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0906112026-10-12",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1791790080,
-        "departureTime": 1791790080,
+        "arrivalTime": 1791819900,
+        "departureTime": 1791819900,
         "isRealtime": false
       }
     ]
