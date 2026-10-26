@@ -3,123 +3,43 @@
   "data": {
     "trips": [
       {
-        "tripId": "3436412026-10-24",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1792917120,
-        "departureTime": 1792917120,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0436412026-10-24",
-        "routeId": "3141217000AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1792917300,
-        "departureTime": 1792917300,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0436422026-10-24",
-        "routeId": "2210017000AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1792917300,
-        "departureTime": 1792917300,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0907112026-10-24",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1792919460,
-        "departureTime": 1792919460,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0429522026-10-24",
-        "routeId": "1700022100LC112",
-        "routeName": "AVLO",
-        "routeColor": "6B2D8B",
-        "headsign": "Ourense",
-        "arrivalTime": 1792920540,
-        "departureTime": 1792920540,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0429512026-10-24",
-        "routeId": "1700031412LC112",
-        "routeName": "AVLO",
-        "routeColor": "6B2D8B",
-        "headsign": "A Coruña",
-        "arrivalTime": 1792920720,
-        "departureTime": 1792920720,
-        "isRealtime": false
-      },
-      {
-        "tripId": "3429512026-10-24",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1792920720,
-        "departureTime": 1792920720,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0909012026-10-24",
-        "routeId": "2210031412AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "A Coruña",
-        "arrivalTime": 1792923000,
-        "departureTime": 1792923000,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0447522026-10-24",
-        "routeId": "1700022100AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Ourense",
-        "arrivalTime": 1792926360,
-        "departureTime": 1792926360,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0447512026-10-24",
+        "tripId": "0450512026-10-25",
         "routeId": "1700008223AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1792926540,
-        "departureTime": 1792926540,
+        "arrivalTime": 1793018520,
+        "departureTime": 1793018520,
         "isRealtime": false
       },
       {
-        "tripId": "3447512026-10-24",
-        "routeId": "2210031400AV008",
+        "tripId": "0433512026-10-26",
+        "routeId": "1700031400GL023",
+        "routeName": "ALVIA",
+        "routeColor": "0064A8",
+        "headsign": "Santiago de Compostela-Daniel Castelao",
+        "arrivalTime": 1793032680,
+        "departureTime": 1793032680,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0443412026-10-26",
+        "routeId": "3140017000GL023",
+        "routeName": "ALVIA",
+        "routeColor": "0064A8",
+        "headsign": "Madrid-Chamartín-Clara Campoamor",
+        "arrivalTime": 1793044980,
+        "departureTime": 1793044980,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0940012026-10-25",
+        "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
-        "headsign": "Santiago de Compostela-Daniel Castelao",
-        "arrivalTime": 1792926540,
-        "departureTime": 1792926540,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0527312026-10-24",
-        "routeId": "6091122100AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Ourense",
-        "arrivalTime": 1792931580,
-        "departureTime": 1792931580,
+        "headsign": "A Coruña",
+        "arrivalTime": 1793046600,
+        "departureTime": 1793046600,
         "isRealtime": false
       }
     ]
