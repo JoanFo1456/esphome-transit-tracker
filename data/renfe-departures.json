@@ -3,43 +3,43 @@
   "data": {
     "trips": [
       {
-        "tripId": "0450512026-10-25",
+        "tripId": "0450512026-10-26",
         "routeId": "1700008223AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1793018520,
-        "departureTime": 1793018520,
+        "arrivalTime": 1793104920,
+        "departureTime": 1793104920,
         "isRealtime": false
       },
       {
-        "tripId": "0433512026-10-26",
+        "tripId": "0433512026-10-27",
         "routeId": "1700031400GL023",
         "routeName": "ALVIA",
         "routeColor": "0064A8",
         "headsign": "Santiago de Compostela-Daniel Castelao",
-        "arrivalTime": 1793032680,
-        "departureTime": 1793032680,
+        "arrivalTime": 1793119080,
+        "departureTime": 1793119080,
         "isRealtime": false
       },
       {
-        "tripId": "0443412026-10-26",
+        "tripId": "0443412026-10-27",
         "routeId": "3140017000GL023",
         "routeName": "ALVIA",
         "routeColor": "0064A8",
         "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1793044980,
-        "departureTime": 1793044980,
+        "arrivalTime": 1793131380,
+        "departureTime": 1793131380,
         "isRealtime": false
       },
       {
-        "tripId": "0940012026-10-25",
+        "tripId": "0940012026-10-26",
         "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1793046600,
-        "departureTime": 1793046600,
+        "arrivalTime": 1793133000,
+        "departureTime": 1793133000,
         "isRealtime": false
       }
     ]
