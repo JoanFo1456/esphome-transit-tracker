@@ -1,6 +1,17 @@
 {
   "event": "schedule",
   "data": {
-    "trips": []
+    "trips": [
+      {
+        "tripId": "0450512026-11-04",
+        "routeId": "1700008223AV006",
+        "routeName": "AVE",
+        "routeColor": "E3000F",
+        "headsign": "Vigo Urzaiz",
+        "arrivalTime": 1793796120,
+        "departureTime": 1793796120,
+        "isRealtime": false
+      }
+    ]
   }
 }
