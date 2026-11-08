@@ -3,123 +3,113 @@
   "data": {
     "trips": [
       {
-        "tripId": "3431412026-11-06",
-        "routeId": "3141222100AV008",
-        "routeName": "AVANT",
-        "routeColor": "FF6B00",
-        "headsign": "Ourense",
-        "arrivalTime": 1794055020,
-        "departureTime": 1794055020,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0431412026-11-06",
-        "routeId": "3141217000AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1794055200,
-        "departureTime": 1794055200,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0431422026-11-06",
-        "routeId": "2210017000AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1794055200,
-        "departureTime": 1794055200,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0450512026-11-06",
-        "routeId": "1700008223AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1794055320,
-        "departureTime": 1794055320,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0425412026-11-06",
-        "routeId": "0822317000AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1794065280,
-        "departureTime": 1794065280,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0538212026-11-06",
-        "routeId": "2210060911AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Alicante/Alacant-Terminal",
-        "arrivalTime": 1794069600,
-        "departureTime": 1794069600,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0434522026-11-06",
+        "tripId": "0447522026-11-07",
         "routeId": "1700022100AV006",
         "routeName": "AVE",
         "routeColor": "E3000F",
         "headsign": "Ourense",
-        "arrivalTime": 1794071700,
-        "departureTime": 1794071700,
+        "arrivalTime": 1794135960,
+        "departureTime": 1794135960,
         "isRealtime": false
       },
       {
-        "tripId": "3433412026-11-06",
+        "tripId": "0447512026-11-07",
+        "routeId": "1700008223AV006",
+        "routeName": "AVE",
+        "routeColor": "E3000F",
+        "headsign": "Vigo Urzaiz",
+        "arrivalTime": 1794136140,
+        "departureTime": 1794136140,
+        "isRealtime": false
+      },
+      {
+        "tripId": "3447512026-11-07",
+        "routeId": "2210031400AV008",
+        "routeName": "AVANT",
+        "routeColor": "FF6B00",
+        "headsign": "Santiago de Compostela-Daniel Castelao",
+        "arrivalTime": 1794136140,
+        "departureTime": 1794136140,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0527312026-11-07",
+        "routeId": "6091122100AV006",
+        "routeName": "AVE",
+        "routeColor": "E3000F",
+        "headsign": "Ourense",
+        "arrivalTime": 1794141180,
+        "departureTime": 1794141180,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0451512026-11-07",
+        "routeId": "1700008223AV006",
+        "routeName": "AVE",
+        "routeColor": "E3000F",
+        "headsign": "Vigo Urzaiz",
+        "arrivalTime": 1794146220,
+        "departureTime": 1794146220,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0434522026-11-07",
+        "routeId": "1700022100AV006",
+        "routeName": "AVE",
+        "routeColor": "E3000F",
+        "headsign": "Ourense",
+        "arrivalTime": 1794158100,
+        "departureTime": 1794158100,
+        "isRealtime": false
+      },
+      {
+        "tripId": "3433412026-11-07",
         "routeId": "3141222100AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "Ourense",
-        "arrivalTime": 1794071760,
-        "departureTime": 1794071760,
+        "arrivalTime": 1794158160,
+        "departureTime": 1794158160,
         "isRealtime": false
       },
       {
-        "tripId": "3434512026-11-06",
+        "tripId": "3434512026-11-07",
         "routeId": "2210031412AV008",
         "routeName": "AVANT",
         "routeColor": "FF6B00",
         "headsign": "A Coruña",
-        "arrivalTime": 1794071880,
-        "departureTime": 1794071880,
+        "arrivalTime": 1794158280,
+        "departureTime": 1794158280,
         "isRealtime": false
       },
       {
-        "tripId": "0433422026-11-06",
+        "tripId": "0433422026-11-07",
         "routeId": "2210017000LC112",
         "routeName": "AVLO",
         "routeColor": "6B2D8B",
         "headsign": "Madrid-Chamartín-Clara Campoamor",
-        "arrivalTime": 1794071940,
-        "departureTime": 1794071940,
+        "arrivalTime": 1794158340,
+        "departureTime": 1794158340,
         "isRealtime": false
       },
       {
-        "tripId": "0456512026-11-06",
-        "routeId": "1700008223AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
-        "headsign": "Vigo Urzaiz",
-        "arrivalTime": 1794075480,
-        "departureTime": 1794075480,
-        "isRealtime": false
-      },
-      {
-        "tripId": "0437522026-11-06",
-        "routeId": "1700022100AV006",
-        "routeName": "AVE",
-        "routeColor": "E3000F",
+        "tripId": "3440412026-11-07",
+        "routeId": "3141222100AV008",
+        "routeName": "AVANT",
+        "routeColor": "FF6B00",
         "headsign": "Ourense",
-        "arrivalTime": 1794081120,
-        "departureTime": 1794081120,
+        "arrivalTime": 1794171300,
+        "departureTime": 1794171300,
+        "isRealtime": false
+      },
+      {
+        "tripId": "0440422026-11-07",
+        "routeId": "2210017000AV006",
+        "routeName": "AVE",
+        "routeColor": "E3000F",
+        "headsign": "Madrid-Chamartín-Clara Campoamor",
+        "arrivalTime": 1794171480,
+        "departureTime": 1794171480,
         "isRealtime": false
       }
     ]
